@@ -4,12 +4,13 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import 'todomvc-app-css/index.css'
 import configureStore from './store/configureStore'
+import App from './containers/App'
 
 const store = configureStore();
 
 render(
   <Provider store={store}>
-    <div>hello world! This is hello world program!</div>
+    <App />
   </Provider>,
   document.getElementById('root')
 )
