@@ -14,7 +14,7 @@ class Header extends Component {
                 <h1>Todos</h1>
                 <TodoTextInput 
                 newTodo
-                palceholder = "What needs to be done?"
+                placeholder = "What needs to be done?"
                 onSave={this.handleSave.bind(this)}/>
             </header>
             )
