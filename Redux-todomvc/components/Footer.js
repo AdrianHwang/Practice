@@ -1,45 +1,60 @@
 import React, {PropTypes, Component} from 'react'
 import classnames from 'classnames'
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
 
-var FILTER_TITLES = {
-    SHOW_ALL: 'All',
-    SHOW_ACTIVE: 'Active',
-    SHOW_COMPLETED: 'Completed'
+const FILTER_TITLES = {
+    [SHOW_ALL]: 'All',
+    [SHOW_ACTIVE]: 'Active',
+    [SHOW_COMPLETED]: 'Completed'
 }
 
 class Footer extends Component {
-    constructor(props, context){
-        super(props, context)
-        this.state = {filter: "SHOW_ALL"}
+    renderTodoCount(){
+        const {activeCount} = this.props
+        const itemWord = activeCount === 1 ? 'item' : 'items'
+        return (
+            <span className="todo-count">
+                <strong>{activeCount || 'No'}</strong> {itemWord} left
+              </span>
+        )
+    }
+
+    renderClearButton(){
+        const {completedCount, onClearCompleted } = this.props
+        if(completedCount > 0){
+            return (
+                <button className="clear-completed"
+                        onClick={onClearCompleted} >
+                    Clear completed
+                </button>
+            )
+        }
+    }
+
+    renderFilterLink(filter){
+        const title = FILTER_TITLES[filter]
+        const {filter: selectedFilter, onShow} = this.props
+
+        return (
+            <a className={classnames({selected: filter === selectedFilter})}
+               style={{cursor: 'pointer'}}
+               onClick={() => onShow(filter)}>{title}</a>
+        )
     }
 
     render() {
-        const {todos, actions} = this.props
-        const leftCount = todos.reduce((count, todo) =>
-                !todo.completed ? count + 1 : count, 0)
-        const completedCount =  todos.length - leftCount
         return (
             <footer className="footer">
-                <span className="todo-count">
-                    <strong>{leftCount}</strong> Left
-                </span>
-
+                {this.renderTodoCount()}
                 <ul className="filters">
-                    {["SHOW_ALL", "SHOW_ACTIVE", "SHOW_COMPLETED"].map(filter =>
+                    {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
                         (
                             <li key={filter}>
-                                <a>
-                                    {FILTER_TITLES[filter]}
-                                </a>
+                                {this.renderFilterLink(filter)}
                             </li>)
                     )}
                 </ul>
-
-                {!!completedCount && (
-                <button className="clear-completed"
-                        onClick={actions.clearCompleted}>
-                    Clear Completed
-                </button>)}
+                {this.renderClearButton()}
             </footer>
         )
 
@@ -47,8 +62,11 @@ class Footer extends Component {
 }
 
 Footer.propsType = {
-    todos: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    completedCount: PropTypes.number.isRequired,
+    activeCount: PropTypes.number.isRequired,
+    filter: PropTypes.string.isRequired,
+    onClearCompleted: PropTypes.func.isRequired,
+    onShow: PropTypes.func.isRequired
 }
 
 
