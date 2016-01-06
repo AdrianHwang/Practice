@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react'
+import TodoItem from "./TodoItem"
 
 class MainSections extends Component {
     constructor(props, context){
@@ -12,15 +13,8 @@ class MainSections extends Component {
                 <input type="checkbox" name="" className="toggle-all" id="" />
                 <ul className="todo-list">
                     {todos.map(todo =>
-                        <li key={todo.id}>
-                            <div className="view">
-                                <input type="checkbox" className="toggle" name="" id=""/>
-                                <label>{todo.text}</label>
-                                <button className="destroy"></button>
-                            </div>
-                        </li>
+                        <TodoItem key={todo.id} todo={todo} {...actions} />
                     )}
-
                 </ul>
             </section>
         )
