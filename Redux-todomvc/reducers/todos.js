@@ -49,7 +49,6 @@ export default function todos(state = initialState, action) {
       return state.filter(todo => todo.completed === false)
 
     default:
-      console.log("I come from todo mvc" + state);
       return state
   }
 }
