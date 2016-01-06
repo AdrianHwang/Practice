@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import MainSections from '../components/MainSections'
 import * as TodoActions from '../actions/todos'
 
 
@@ -13,6 +14,7 @@ class App extends Component {
         return (
                 <div>
                     <Header addTodo={actions.addTodo}/>
+                    <MainSections />
                     <Footer />
                 </div>
             )
