@@ -1,22 +1,38 @@
 import React, {PropTypes, Component} from 'react'
 
 class Footer extends Component {
+    constructor(props, context){
+        super(props, context)
+    }
+
     render() {
+        const {todos, actions} = this.props
+        const leftCount = todos.reduce((count, todo) =>
+                !todo.completed ? count + 1 : count, 0)
+
         return (
             <footer className="footer">
                 <span className="todo-count">
-                    <strong>123</strong> left
+                    <strong>{leftCount}</strong> Left
                 </span>
                 <ul className="filters">
                     <li><a href="#">All</a></li>
                     <li><a href="#">Active</a></li>
                     <li><a href="#">Completed</a></li>
                 </ul>
-                <button className="clear-completed">Clear Completed</button>
+                <button className="clear-completed"
+                        onClick={actions.clearCompleted}>
+                    Clear Completed
+                </button>
             </footer>
         )
 
     }
+}
+
+Footer.propsType = {
+    todos: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
 }
 
 

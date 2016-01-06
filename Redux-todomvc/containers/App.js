@@ -15,7 +15,7 @@ class App extends Component {
                 <div>
                     <Header addTodo={actions.addTodo}/>
                     <MainSections todos={todos} actions={actions}/>
-                    <Footer />
+                    <Footer todos={todos} actions={actions}/>
                 </div>
             )
     }
