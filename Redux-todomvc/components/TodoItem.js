@@ -21,7 +21,8 @@ class TodoItem extends Component {
                            checked={todo.completed}
                            onChange={()=> completeTodo(todo.id)}/>
                     <label>{todo.text}</label>
-                    <button className="destroy"></button>
+                    <button className="destroy"
+                            onClick={()=> deleteTodo(todo.id)}/>
                 </div>
             </li>
         )
