@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react'
+import classNames from 'classnames'
 
 class TodoItem extends Component {
     constructor(props, context){
@@ -8,11 +9,17 @@ class TodoItem extends Component {
         }
     }
     render () {
-        const {todo} = this.props
+        const {todo, deleteTodo, completeTodo} = this.props
+        let liClassName = classNames({
+            completed: todo.completed
+        })
         return (
-            <li>
+            <li className={liClassName}>
                 <div className="view">
-                    <input type="checkbox" className="toggle" name="" id=""/>
+                    <input type="checkbox"
+                           className="toggle"
+                           checked={todo.completed}
+                           onChange={()=> completeTodo(todo.id)}/>
                     <label>{todo.text}</label>
                     <button className="destroy"></button>
                 </div>
@@ -23,7 +30,10 @@ class TodoItem extends Component {
 
 
 TodoItem.propTypes={
-    todo: PropTypes.object.isRequired
+    todo: PropTypes.object.isRequired,
+    editTodo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    completeTodo: PropTypes.func.isRequired
 }
 
 
