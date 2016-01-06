@@ -4,7 +4,18 @@
     <title>Redux TodoMVC example</title>
   </head>
   <body>
-    <div class="todoapp" id="root">
+    <div class="todoapp" id="root"></div>
+    <div>
+      <h4>说明:</h4>
+      <p><strong>一,</strong> &nbsp;&nbsp;在"添加任务" 输入框中填写任务名称, 然后敲击回车键, 任务就放入了下面的任务列表, 默认状态为"正在进行的任务".</p>
+      <p><strong>二,</strong>
+        &nbsp;&nbsp;在任务列表中点击任务前面的单选按钮, 此时, 此条任务被标记为"完成的任务";
+        双击任务名称, 可以对其进行更新, 更新任务名称后, 任务的状态保持不变, 当任务名称为空字符时, 默认删除任务;
+        单机任务名称后面的 "X" 符号, 可以将任务删除.
+      </p>
+      <p><strong>三,</strong> &nbsp;&nbsp;页脚左边显示, 剩余未完成的任务数;
+        中间部分可以选择查看不同状态下的任务, 默认显示全部任务;
+        右边按钮是清除已完成的任务, 如果没有已完成任务时,此按钮隐藏.</p>
     </div>
     <script src="/static/bundle.js"></script>
   </body>

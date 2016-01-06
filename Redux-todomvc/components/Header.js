@@ -11,10 +11,10 @@ class Header extends Component {
     render(){
         return (
             <header className="header">
-                <h1>Todos</h1>
+                <h1>任务</h1>
                 <TodoTextInput 
                     newTodo
-                    placeholder = "What needs to be done?"
+                    placeholder = "添加任务"
                     onSave={this.handleSave.bind(this)}/>
             </header>
             )

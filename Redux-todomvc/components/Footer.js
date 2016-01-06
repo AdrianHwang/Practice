@@ -3,9 +3,9 @@ import classnames from 'classnames'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
 
 const FILTER_TITLES = {
-    [SHOW_ALL]: 'All',
-    [SHOW_ACTIVE]: 'Active',
-    [SHOW_COMPLETED]: 'Completed'
+    [SHOW_ALL]: '全部任务',
+    [SHOW_ACTIVE]: '正在进行的任务',
+    [SHOW_COMPLETED]: '完成的任务'
 }
 
 class Footer extends Component {
@@ -14,8 +14,8 @@ class Footer extends Component {
         const itemWord = activeCount === 1 ? 'item' : 'items'
         return (
             <span className="todo-count">
-                <strong>{activeCount || 'No'}</strong> {itemWord} left
-              </span>
+                剩余 <strong style={{color: "Pink"}}><i>{activeCount}</i></strong> 条任务
+            </span>
         )
     }
 
@@ -24,8 +24,9 @@ class Footer extends Component {
         if(completedCount > 0){
             return (
                 <button className="clear-completed"
+                        style={{border: "1px solid lightblue", color: "lightblue"}}
                         onClick={onClearCompleted} >
-                    Clear completed
+                    清除完成了的任务
                 </button>
             )
         }
