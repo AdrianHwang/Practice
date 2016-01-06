@@ -8,9 +8,13 @@ class MainSections extends Component {
     }
     render(){
         const {todos, actions } = this.props
+        const completedCount = todos.reduce((count, todo) => todo.completed ? count + 1 : count, 0)
         return (
             <section className="main">
-                <input type="checkbox" name="" className="toggle-all" id="" />
+                <input type="checkbox"
+                       className="toggle-all"
+                       checked={completedCount === todos.length}
+                       onChange={actions.completeAll}/>
                 <ul className="todo-list">
                     {todos.map(todo =>
                         <TodoItem key={todo.id} todo={todo} {...actions} />
