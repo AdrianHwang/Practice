@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import * as TodoActions from '../actions/todos'
 
 
@@ -12,6 +13,7 @@ class App extends Component {
         return (
                 <div>
                     <Header addTodo={actions.addTodo}/>
+                    <Footer />
                 </div>
             )
     }
