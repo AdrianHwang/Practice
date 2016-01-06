@@ -14,7 +14,7 @@ class App extends Component {
         return (
                 <div>
                     <Header addTodo={actions.addTodo}/>
-                    <MainSections />
+                    <MainSections todos={todos} actions={actions}/>
                     <Footer />
                 </div>
             )
